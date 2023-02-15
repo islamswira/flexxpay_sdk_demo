@@ -7,6 +7,9 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.islamswira'
+version = '1.2'
+
 android {
     namespace 'com.android.flexxpay_sdk'
     compileSdk 33
@@ -28,10 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
@@ -104,15 +104,16 @@ dependencies {
 }
 
 
+
 afterEvaluate {
     publishing {
         publications {
+            // Creates a Maven publication called "release".
             release(MavenPublication) {
+                from components.release
                 groupId = 'com.github.islamswira'
                 artifactId = 'flexxpay_demo_sdk'
-                version = '1.1'
-
-                from components.release
+                version = '1.2'
             }
         }
     }
